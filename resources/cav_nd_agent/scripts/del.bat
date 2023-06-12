@@ -1,0 +1,4 @@
+
+
+RD /S /Q ..\..\monitors
+

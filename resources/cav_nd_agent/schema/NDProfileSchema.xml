@@ -14,13 +14,14 @@
   
   <xs:element name="package">
     <xs:complexType>
-      <xs:sequence>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
         <xs:element name="name" type="xs:string "/>
         <xs:element name="functionalgroup" type="xs:string" minOccurs="0"/>
         <xs:element name="instrument" type="xs:string"/>
-        <xs:element ref="class" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
+        <xs:element ref="class"/>
+        <xs:element ref="interface"/>
+        </xs:choice>
+      </xs:complexType>
   </xs:element>
 
   <xs:element name="class">
@@ -35,14 +36,26 @@
     </xs:complexType>
   </xs:element>
   
-  <xs:element name="method">
+  <xs:element name="interface">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="name" type="xs:string "/>
+        <xs:element name="instrument" type="xs:string"/>
+        <xs:element ref="method" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="method">
+    <xs:complexType>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element name="name" type="xs:string "/>
         <xs:element name="functionalgroup" type="xs:string" minOccurs="0"/>
         <xs:element name="instrument" type="xs:string"/>
+        <xs:element name="level" type="xs:integer"/>
         <xs:element name="id" type="xs:integer"/>
-      </xs:sequence>
+
+      </xs:choice>
     </xs:complexType>
   </xs:element>
  </xs:schema>
